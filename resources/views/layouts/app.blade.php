@@ -17,12 +17,12 @@
 </head>
 
 <body class="font-sans antialiased">
-    <div class="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-100">
+    <div class="min-h-screen bg-gray-100 dark:bg-slate-800 dark:text-gray-100 text-gray-900">
         @include('layouts.navigation')
 
         <!-- Page Heading -->
         @isset($header)
-            <header class="bg-white dark:bg-gray-800 shadow">
+            <header class="bg-white dark:bg-slate-800 shadow">
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                     {{ $header }}
                 </div>
@@ -30,8 +30,13 @@
         @endisset
 
         <!-- Page Content -->
-        <main {{ $attributes->merge(['class' => '']) }}>
-            {{ $slot }}
+        <main class="flex justify-between" {{ $attributes->merge(['class' => '']) }}>
+            @include('layouts.menu')
+            <div
+                class=" shrink-0 grow basis-[800px] dark:bg-slate-800 overflow-scroll h-[calc(100vh-64px)] px-20 py-10">
+                {{ $slot }}
+            </div>
+            @include('layouts.sidebar')
         </main>
     </div>
 </body>
