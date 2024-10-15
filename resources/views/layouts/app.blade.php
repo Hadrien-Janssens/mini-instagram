@@ -30,9 +30,9 @@
         @endisset
 
         <!-- Page Content -->
-        <main class="flex justify-between" {{ $attributes->merge(['class' => '']) }}>
+        <main class="flex justify-between max-w-7xl m-auto" {{ $attributes->merge(['class' => '']) }}>
             @include('layouts.menu')
-            <div class=" shrink-0 grow basis-[800px] overflow-scroll h-[calc(100vh-64px)] px-5 py-10 pt-6">
+            <div class=" shrink-0 grow basis-[800px] overflow-scroll h-[calc(100vh-64px)] px-5 py-10 pt-6 ">
                 {{ $slot }}
             </div>
             <x-sidebar :users='$users'></x-sidebar>

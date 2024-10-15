@@ -17,6 +17,7 @@
 
     <div class="w-7/12 ml-auto">
         <p class="text-3xl font-extrabold">{{ Auth::user()->name }}</p>
+        <p class="text-gray-500">{{ Auth::user()->bio }}</p>
     </div>
     <div>
         @foreach ($posts as $post)
