@@ -1,13 +1,6 @@
 <x-app-layout class="flex justify-between">
     {{-- NEW POST FORM  --}}
-    <div class=" bg-white rounded-xl shadow-md p-6 ">
-        <form action="{{ route('post.store') }}" class=" flex w-full gap-3" method="POST">
-            @csrf
-            <input type="text" placeholder="Que ressens-tu ?" class="grow text-neutral-900 border-slate-200 rounded-md"
-                name="title">
-            <button class="border bg-blue-500 rounded-md shadow-sm text-blue-50 px-5">Publier</button>
-        </form>
-    </div>
+    @include('components.post-form')
 
 
     {{-- POST LIST  --}}
@@ -17,8 +10,8 @@
             <div class="mb-3 flex items-center gap-3">
                 @if ($post->user->img_path)
                     <div>
-                        <img src="{{ Storage::url($post->user->img_path) }}" alt="" width="200px"
-                            height="200px" class="object-cover w-12 h-12 rounded-full border-[2px] border-orange-900">
+                        <img src="{{ Storage::url($post->user->img_path) }}" alt="" width="200px" height="200px"
+                            class="object-cover w-12 h-12 rounded-full border-[2px] border-orange-900">
                     </div>
                 @else
                     <div
