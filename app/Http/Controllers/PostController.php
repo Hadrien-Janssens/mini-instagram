@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,9 +28,15 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $path = null;
-        // dd($request->file('img_path'));
+
+        $request->validate([
+            'img_path' => 'required|file|mimes:jpg,jpeg,png|max:2048',
+        ]);
+
+
         if ($request->file('img_path')) {
             $path = $request->file('img_path')->store('images', 'public');
+            // dd($path);
         }
 
         Post::create([
@@ -37,6 +44,7 @@ class PostController extends Controller
             'img_path' => $path,
             'content' => 'test content',
             'user_id' => Auth::id(),
+            'published_at' => Carbon::now()->timestamp
         ]);
 
 
