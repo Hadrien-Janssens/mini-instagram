@@ -26,7 +26,7 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
 
     Route::get('/', function () {
-        $posts = Post::with('user')->orderBy('published_at', 'desc')->get();
+        $posts = Post::with('user')->orderBy('created_at', 'desc')->get();
         return view('home.index', [
             'posts' => $posts,
         ]);

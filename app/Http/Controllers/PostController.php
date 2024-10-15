@@ -36,7 +36,6 @@ class PostController extends Controller
 
         if ($request->file('img_path')) {
             $path = $request->file('img_path')->store('images', 'public');
-            // dd($path);
         }
 
         Post::create([
