@@ -35,7 +35,7 @@
             <div class=" shrink-0 grow basis-[800px] overflow-scroll h-[calc(100vh-64px)] px-5 py-10 pt-6">
                 {{ $slot }}
             </div>
-            @include('layouts.sidebar')
+            <x-sidebar :users='$users'></x-sidebar>
         </main>
     </div>
 </body>
