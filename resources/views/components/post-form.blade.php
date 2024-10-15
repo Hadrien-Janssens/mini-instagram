@@ -1,5 +1,6 @@
 <div class=" bg-white rounded-xl shadow-md p-6 ">
-    <form action="{{ route('post.store') }}" class=" flex flex-col w-full gap-3" method="POST">
+    <form action="{{ route('post.store') }}" class=" flex flex-col w-full gap-3" method="POST"
+        enctype="multipart/form-data">
         @csrf
         <div class=" flex w-full gap-3">
             <input type="text" placeholder="Que ressens-tu ?" class="grow text-neutral-900 border-slate-200 rounded-md"
@@ -7,8 +8,18 @@
             <button class="border bg-blue-500 rounded-md shadow-sm text-blue-50 px-5">Publier</button>
         </div>
 
-        <label for="img" class="border">
-            <input type="file" name="" id="img" hidden>
-        </label>
+        <div class=" flex gap-3">
+            <label for="img" class="flex gap-1 border rounded-md py-0.5 px-1 items-center">
+                <x-letsicon-img-box-duotone-line class="h-6 text-green-500" />
+                <p class="font-semibold text-gray-500 text-sm ">image</p>
+                <input type="file" name="img_path" id="img" hidden>
+            </label>
+            <label for="feeling" class="flex gap-1 border rounded-md py-0.5 px-1 items-center">
+                <x-bi-emoji-smile class="h-6 text-yellow-500" />
+                <p class="font-semibold text-gray-500 text-sm">humeur</p>
+                <input type="file" name="feeling" id="feeling" hidden>
+            </label>
+        </div>
+
     </form>
 </div>
