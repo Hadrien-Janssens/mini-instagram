@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostCreateRequest;
 use App\Models\Post;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -25,16 +26,13 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PostCreateRequest $request)
     {
         $path = null;
 
-        $request->validate([
-            'img_path' => 'required|file|mimes:jpg,jpeg,png|max:2048',
-        ]);
+        $validatePostData = $request->validated();
 
-
-        if ($request->file('img_path')) {
+        if ($validatePostData) {
             $path = $request->file('img_path')->store('images', 'public');
         }
 

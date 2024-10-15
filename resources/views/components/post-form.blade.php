@@ -7,6 +7,12 @@
                 name="title">
             <button class="border bg-blue-500 rounded-md shadow-sm text-blue-50 px-5">Publier</button>
         </div>
+        @error('title')
+            <p class="text-red-400">{{ $message }}</p>
+        @enderror
+        @error('img_path')
+            <p class="text-red-400">{{ $message }}</p>
+        @enderror
 
         <div class=" flex gap-3">
             <label for="img" class="flex gap-1 border rounded-md py-0.5 px-1 items-center">

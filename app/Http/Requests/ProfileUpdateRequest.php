@@ -26,7 +26,8 @@ class ProfileUpdateRequest extends FormRequest
                 Rule::unique(User::class)->ignore($this->user()->id),
             ],
             'bio' => ['max:2000'],
-            'img_path' => ['string', 'max:255'],
+            'img_path' => 'required|file|mimes:jpg,jpeg,png|max:2048',
+
         ];
     }
 }
