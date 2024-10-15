@@ -1,24 +1,35 @@
-<div
-    class="basis-60 border-r dark:border-gray-700 border-gray-300  h-[calc(100vh-64px)] shrink-0  flex flex-col justify-between py-5 px-10 font-bold  text-lg">
-    <ul class="space-y-6">
+<div class="basis-60   h-[calc(100vh-64px)] shrink-0  flex flex-col justify-between py-5 px-5 font-bold  text-md ">
+    <ul class="bg-white rounded-xl shadow-md p-6 flex flex-col ">
         <li>
-            <a href="{{ route('home.index') }}">
+            <a class="hover:bg-slate-100 transition block py-3 rounded-lg pl-2" href="{{ route('home.index') }}">
                 {{ __('Accueil') }}
             </a>
         </li>
-        <li>Amis</li>
-        <li>Notifications</li>
-        <li>Messages</li>
+        <li> <a class="hover:bg-slate-100 transition block py-3 rounded-lg pl-2" href="{{ route('friend.index') }}">
+                {{ __('Followers') }}
+            </a></li>
         <li>
-            Profile
+            <a class="hover:bg-slate-100 transition block py-3 rounded-lg pl-2" href="{{ route('notification.index') }}">
+                {{ __('Notifications') }}
+            </a>
         </li>
         <li>
-            <a href="{{ route('profile.edit') }}">
+            <a class="hover:bg-slate-100 transition block py-3 rounded-lg pl-2" href="{{ route('message.index') }}">
+                {{ __('Messages') }}
+            </a>
+        </li>
+        <li>
+            <a class="hover:bg-slate-100 transition block py-3 rounded-lg pl-2" href="{{ route('user.index') }}">
+                {{ __('Profile') }}
+            </a>
+        </li>
+        <li>
+            <a class="hover:bg-slate-100 transition block py-3 rounded-lg pl-2" href="{{ route('profile.edit') }}">
                 {{ __('Compte') }}
             </a>
         </li>
     </ul>
-    <div>
+    <div class=" bg-white rounded-xl shadow-md py-3 pl-6 ">
         <form method="POST" action="{{ route('logout') }}">
             @csrf
 
