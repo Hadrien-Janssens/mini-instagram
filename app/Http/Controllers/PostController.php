@@ -43,9 +43,6 @@ class PostController extends Controller
             'user_id' => Auth::id(),
             'published_at' => Carbon::now()->timestamp
         ]);
-
-
-
         return back();
     }
 
@@ -80,6 +77,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return back();
     }
 }
