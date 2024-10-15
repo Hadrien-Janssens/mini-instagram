@@ -52,7 +52,7 @@
 
         <div>
             <x-input-label for="bio" :value="__('Bio')" />
-            <textarea required autofocus autocomplete="name" id="bio" name="bio"
+            <textarea required autofocus id="bio" name="bio"
                 class = 'border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm mt-1 block w-full resize-none h-24 text-left '>{{ old('bio', $user->bio) }}</textarea>
             <x-input-error class="mt-2" :messages="$errors->get('bio')" />
         </div>
