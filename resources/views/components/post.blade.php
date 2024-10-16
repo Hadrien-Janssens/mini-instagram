@@ -73,7 +73,7 @@
     <div>
         @if ($post->img_path)
             <img src="{{ Storage::url($post->img_path) }}" alt="" width="200px" height="200px"
-                class="w-full rounded-md">
+                class=" w-full h-[450px] rounded-md object-cover">
         @endif
 
     </div>
