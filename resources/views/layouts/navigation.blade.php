@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-white dark:bg-slate-800 border-b border-gray-100 dark:border-gray-700">
+<nav x-data="{ open: false }" class=" border-b border-gray-100 dark:border-gray-700 dark:bg-slate-700">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16 items-center">
@@ -17,13 +17,14 @@
                     @endif
                 </div>
             </div>
-
+            {{-- SEARCHBAR --}}
             <form action="{{ route('post.store') }}" class=" flex flex-col grow gap-3 max-w-[800px]" method="POST">
                 @csrf
                 <div class=" flex w-full gap-3 ">
                     <input type="text" placeholder="Rechercher un titre, autheur ou tag"
-                        class="grow text-neutral-900 border-slate-200 rounded-md" name="title">
-                    <button class="border bg-blue-500 rounded-md shadow-sm text-blue-50 px-5">Rechercher</button>
+                        class="grow dark:bg-slate-800 text-neutral-900 border-none rounded-md" name="title">
+                    <button
+                        class=" bg-blue-500 dark:bg-cyan-800  rounded-md shadow-sm text-blue-50 px-5">Rechercher</button>
                 </div>
             </form>
 
@@ -31,7 +32,7 @@
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <div
                     class="rounded-full w-10 h-10 bg-orange-500 flex justify-center items-center  border-[2px] border-orange-900 text-orange-50 overflow-hidden cursor-pointer ">
-                    <a href="{{ route('user.index') }}">
+                    <a href="{{ route('user.index', Auth::user()) }}">
                         @if (Auth::user()->img_path)
                             <img src="{{ Storage::url(Auth::user()->img_path) }}" alt="" class="object-cover  ">
                         @else

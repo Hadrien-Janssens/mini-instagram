@@ -1,5 +1,6 @@
 <x-app-layout class="flex justify-between">
-    <h2 class="text-xl font-semibold">Followers</h2>
+    <h2 class="text-xl font-semibold mb-3">Membre{{ count($followeds) > 1 ? 's' : '' }}
+        suivi{{ count($followeds) > 1 ? 's' : '' }}</h2>
 
     <div class="grid grid-cols-2 gap-4 ">
         @forelse ($followeds as $followed)
@@ -18,7 +19,7 @@
                         </div>
                     @endif
 
-                    <p class="font-bold">{{ $followed->name }}</p>
+                    <a href="{{ route('user.index', $followed) }}" class="font-bold">{{ $followed->name }}</a>
 
                     <form action="{{ route('friend.destroy', $followed->id) }}" method="POST">
                         @csrf
@@ -33,7 +34,10 @@
 
 
         @empty
-            <p> Tu ne suis personne</p>
+            <div>
+                <p> Tu ne suis personne. </p>
+                <p>fonctionnalité si j'ai le temps : lister la suggestion</p>
+            </div>
         @endforelse
     </div>
 </x-app-layout>
