@@ -20,8 +20,13 @@
 
                     <p class="font-bold">{{ $followed->name }}</p>
 
-                    <button class="border bg-gray-100 hover:bg-gray-200 transition rounded-md px-2 py-0.5">ne plus
-                        suivre</button>
+                    <form action="{{ route('friend.destroy', $followed->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button class="border bg-gray-100 hover:bg-gray-200 transition rounded-md px-2 py-0.5">ne plus
+                            suivre</button>
+                    </form>
+
                 </div>
 
             </div>
