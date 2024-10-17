@@ -16,6 +16,11 @@
             'icon' => 'fas-binoculars',
         ],
         [
+            'name' => 'Followers',
+            'url' => 'follower.index',
+            'icon' => 'fas-user-group',
+        ],
+        [
             'name' => 'Notifications',
             'url' => 'notification.index',
             'icon' => 'fas-bell',
@@ -49,13 +54,8 @@
                 </a>
             </li>
         @endforeach
-
-
-
-
-
-
     </ul>
+
     <div class=" bg-white dark:bg-slate-700  rounded-xl shadow-md py-3 pl-6 ">
         <form method="POST" action="{{ route('logout') }}">
             @csrf

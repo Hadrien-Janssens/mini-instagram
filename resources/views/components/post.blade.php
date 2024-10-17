@@ -1,23 +1,10 @@
 @props(['post'])
 <div class="bg-white dark:bg-slate-700 rounded-xl shadow-md p-6 mb-10">
+
     {{-- HEADER  POST --}}
     <div class="flex justify-between">
         <div class="mb-3 flex items-center gap-3">
-
-            <a href="{{ route('user.index', $post->user) }}">
-                @if ($post->user->img_path)
-                    <div>
-                        <img src="{{ Storage::url($post->user->img_path) }}" alt="" width="200px" height="200px"
-                            class="object-cover w-12 h-12 rounded-full border-[2px] border-orange-900">
-                    </div>
-                @else
-                    <div
-                        class="rounded-full w-12  h-12 bg-orange-500 flex justify-center items-center  border-[2px] border-orange-900 text-orange-50 overflow-hidden cursor-pointer ">
-
-                        {{ $post->user->name[0] }}
-                    </div>
-                @endif
-            </a>
+            <x-avatar :user='$post->user' :width='12'></x-avatar>
             <div>
                 <a href="{{ route('user.index', $post->user) }}"
                     class="font-extrabold  text-sm">{{ $post->user->name }}</a>
@@ -74,13 +61,13 @@
         </x-dropdown>
 
     </div>
+
     {{-- BODY POST --}}
     <div>
         @if ($post->img_path)
             <img src="{{ Storage::url($post->img_path) }}" alt="" width="200px" height="200px"
                 class=" w-full h-[500px]  rounded-md object-cover">
         @endif
-
     </div>
 
     {{-- FOOTER POST --}}
