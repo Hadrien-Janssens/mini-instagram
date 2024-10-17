@@ -8,7 +8,7 @@
                 @if ($user->img_path)
                     <img src="{{ Storage::url($user->img_path) }}" alt="" class="object-cover  ">
                 @else
-                    <p class="font-extrabold ">{{ Str::ucfirst($user->name[0]) }}</p>
+                    <p class="font-extrabold text-9xl ">{{ Str::ucfirst($user->name[0]) }}</p>
                 @endif
             </div>
         </div>
@@ -16,8 +16,26 @@
     </div>
 
     <div class="w-7/12 ml-auto">
-        <p class="text-3xl font-extrabold">{{ $user->name }}</p>
+        <div class=" flex justify-between items-center mt-4">
+            <p class="text-3xl font-extrabold">{{ $user->name }}</p>
+            @if ($user->id !== Auth::id())
+                @if ($is_followed)
+                    <form action="{{ route('friend.destroy', $user->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button class="dark:border-slate-500 border rounded px-3 py-1 ">ne plus suivre</button>
+                    </form>
+                @else
+                    <form action="{{ route('friend.store', $user->id) }}" method="POST">
+                        @csrf
+                        <button class="dark:border-slate-500 border rounded px-3 py-1 ">suivre</button>
+                    </form>
+                @endif
+            @endif
+        </div>
         <p class="text-gray-500">{{ $user->bio }}</p>
+
+
     </div>
     <div>
         @foreach ($posts as $post)

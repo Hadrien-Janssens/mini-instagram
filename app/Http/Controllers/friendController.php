@@ -19,6 +19,16 @@ class friendController extends Controller
         return view('friend.index', ['followeds' => $followeds]);
     }
 
+    public function store(Request $request)
+    {
+        $newFollowRelation = new Follower;
+        $newFollowRelation->followed_id = $request->id;
+        $newFollowRelation->follower_id = Auth::id();
+        $newFollowRelation->save();
+
+        return back();
+    }
+
     public function destroy(Request $request)
     {
         $relation = Follower::query()->where('followed_id', $request->id)->where('follower_id', Auth::id())->first();

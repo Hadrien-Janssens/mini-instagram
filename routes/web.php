@@ -41,6 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::get('user/{id}', [UserController::class, 'show'])->name('user.index');
     Route::get('friend', [friendController::class, 'index'])->name('friend.index');
     Route::delete('friend/{id}', [friendController::class, 'destroy'])->name('friend.destroy');
+    Route::post('friend/{id}', [friendController::class, 'store'])->name('friend.store');
     Route::get('message', [MessageController::class, 'index'])->name('message.index');
     Route::get('notification', [NotificationController::class, 'index'])->name('notification.index');
 });
