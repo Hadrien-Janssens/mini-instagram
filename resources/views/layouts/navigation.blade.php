@@ -5,7 +5,7 @@
             <div class="flex">
 
                 <x-nav-link :href="route('home.index')">
-                    <p class="font-bold text-2xl">Instagram</p>
+                    <p class="font-extrabold text-2xl text-blue-600">Laragram</p>
                 </x-nav-link>
 
                 <!-- Navigation Links -->

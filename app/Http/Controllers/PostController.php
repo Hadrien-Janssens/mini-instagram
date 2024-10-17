@@ -7,6 +7,7 @@ use App\Models\Post;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
 
 class PostController extends Controller
 {
@@ -21,7 +22,10 @@ class PostController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create() {}
+    public function create()
+    {
+        return view('post.create');
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -39,7 +43,7 @@ class PostController extends Controller
         Post::create([
             'title' => $request->input('title'),
             'img_path' => $path,
-            'content' => 'test content',
+            'content' => $request->input('legende'),
             'user_id' => Auth::id(),
             'published_at' => Carbon::now()->timestamp
         ]);

@@ -17,8 +17,8 @@ class PostCreateRequest extends FormRequest
     {
         return [
             'title' => ['required', 'string', 'max:255'],
-            'legend' => ['max:2000'],
-            'img_path' => 'file|mimes:jpg,jpeg,png|max:10000',
+            'legende' => ['required', 'max:2000'],
+            'img_path' => 'required|file|mimes:jpg,jpeg,png|max:10000',
 
         ];
     }

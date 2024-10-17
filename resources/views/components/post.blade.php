@@ -1,5 +1,5 @@
 @props(['post'])
-<div class="bg-white dark:bg-slate-700 rounded-xl shadow-md p-6 my-10">
+<div class="bg-white dark:bg-slate-700 rounded-xl shadow-md p-6 mb-10">
     {{-- HEADER  POST --}}
     <div class="flex justify-between">
         <div class="mb-3 flex items-center gap-3">
