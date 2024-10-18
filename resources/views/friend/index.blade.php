@@ -4,7 +4,8 @@
 
     <div class="grid grid-cols-2 gap-4 ">
         @forelse ($followeds as $followed)
-            <div class="shadow-md p-3 rounded-lg bg-white">
+            <x-user-card :followed="$followed" />
+            {{-- <div class="shadow-md p-3 rounded-lg bg-white">
                 <div class="flex justify-between gap-2 items-center">
 
                     @if ($followed->img_path)
@@ -30,7 +31,7 @@
 
                 </div>
 
-            </div>
+            </div> --}}
 
 
         @empty

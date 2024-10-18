@@ -26,8 +26,8 @@ class UserController extends Controller
             }
         }
 
-        // USER IS FOLLOWED BY AUTH ?
-        // get all followed membre
+        // MEMBRE IS FOLLOWED BY AUTH ?
+        // get all followed membre by auth
         $followeds = User::query()
             ->whereIn('id', Follower::query()->where('follower_id', Auth::id())->pluck('followed_id'))
             ->get();
