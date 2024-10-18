@@ -15,6 +15,16 @@ class UserController extends Controller
     {
 
         $user = User::findOrFail($request->id);
+        $posts = Post::query()->where('user_id', '=', $request->id)->with('like')->orderBy('created_at', 'desc')->get();
+
+        foreach ($posts as $post) {
+            $post->is_liked = false;
+            foreach ($post->like as $like) {
+                if ($like->user_id === Auth::id()) {
+                    $post->is_liked = true;
+                }
+            }
+        }
 
         // USER IS FOLLOWED BY AUTH ?
         // get all followed membre
@@ -30,7 +40,8 @@ class UserController extends Controller
             }
         }
 
-        $posts = Post::where('user_id', '=', $request->id)->orderBy('created_at', 'desc')->get();
+
+
         return view('user.index', [
             'user' => $user,
             'posts' => $posts,

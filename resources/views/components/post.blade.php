@@ -1,5 +1,5 @@
 @props(['post'])
-<div class="bg-white dark:bg-slate-700 rounded-xl shadow-md p-6 mb-10">
+<div class="bg-white dark:bg-slate-700 rounded-xl shadow-md p-6 mb-10 ">
 
     {{-- HEADER  POST --}}
     <div class="flex justify-between">
@@ -59,25 +59,38 @@
                 </form>
             </x-slot>
         </x-dropdown>
-
     </div>
 
     {{-- BODY POST --}}
-    <div>
-        @if ($post->img_path)
-            <img src="{{ Storage::url($post->img_path) }}" alt="" width="200px" height="200px"
-                class=" w-full h-[500px]  rounded-md object-cover">
-        @endif
-    </div>
+    <a href="{{ route('post.show', $post) }}" class="flex flex-col">
+        <div>
+            @if ($post->img_path)
+                <img src="{{ Storage::url($post->img_path) }}" alt="" width="200px" height="200px"
+                    class=" w-full h-[500px]  rounded-md object-cover">
+            @endif
+        </div>
+        <div class="flex flex-col gap-2">
+            <p class="font-medium text-lg ">{{ $post->title }}</p>
+            <p class="text-gray-500"> {{ $post->content }} </p>
+        </div>
+    </a>
 
     {{-- FOOTER POST --}}
-    <div class="flex flex-col gap-2">
-        <p class="font-medium text-lg ">{{ $post->title }}</p>
-        <p class="text-gray-500"> {{ $post->content }} </p>
-        <div class="flex gap-3 justify-end ">
-            <button class="border rounded-md px-3 py-0.5">Commenter</button>
-            <button class="border rounded-md px-3 py-0.5">Liker</button>
-        </div>
+    <div class="flex gap-3 justify-end ">
+        <button class="border rounded-md px-3 py-0.5">Commenter</button>
+
+        <form action="{{ route('likePost', $post) }}" method="POST">
+            @csrf
+            {{-- retenir la methode islikedby(Auth::id()) --}}
+            @if ($post->is_liked)
+                <button class="border rounded-md px-3 py-0.5">Disliker</button>
+            @else
+                <button class="border rounded-md px-3 py-0.5">Liker</button>
+            @endif
+        </form>
+
+
+
     </div>
 
 </div>
