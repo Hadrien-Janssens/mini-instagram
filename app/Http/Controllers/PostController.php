@@ -55,7 +55,15 @@ class PostController extends Controller
      */
     public function show(Post $post): View
     {
-        return view('post.show', ['post' => $post]);
+        $userOfPost = $post->user;
+
+        $post->is_followed = Auth::user()->followers->contains('followed_id', $userOfPost->id);
+
+        $post->is_liked = $post->like->contains('user_id', Auth::id());
+
+        return view('post.show', [
+            'post' => $post
+        ]);
     }
 
     /**

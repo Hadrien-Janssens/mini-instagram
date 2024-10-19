@@ -10,6 +10,16 @@
                     class="font-extrabold  text-sm">{{ $post->user->name }}</a>
                 <p class="text-gray-400 font-bold text-sm">il y a 5 minutes</p>
             </div>
+            {{-- si le post appartient a l'utilisateur connecté ou si je me trouve sur la page user.index --}}
+            @if ($post->user_id !== Auth::id() && Route::currentRouteName() !== 'user.index')
+                <div>
+                    @if ($post->is_followed)
+                        <button class="border rounded-md px-3 py-0.5">ne plus suivre</button>
+                    @else
+                        <button class="border rounded-md px-3 py-0.5">suivre</button>
+                    @endif
+                </div>
+            @endif
         </div>
         <x-dropdown align="right" width="48">
             <x-slot name="trigger">
@@ -81,7 +91,6 @@
 
         <form action="{{ route('likePost', $post) }}" method="POST">
             @csrf
-            {{-- retenir la methode islikedby(Auth::id()) --}}
             @if ($post->is_liked)
                 <button class="border rounded-md px-3 py-0.5">Disliker</button>
             @else

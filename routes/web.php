@@ -8,6 +8,7 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Models\Follower;
 use App\Models\Like;
 use App\Models\Post;
 use App\Models\User;
@@ -29,7 +30,13 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
 
     Route::get('/', function () {
-        $posts = Post::with('user')->orderBy('created_at', 'desc')->get();
+        // Récupérer les posts avec la vérification des likes intégrée
+        $posts = Post::withCount(['like as is_liked' => function ($query) {
+            $query->where('user_id', Auth::id());
+        }])
+            ->orderBy('created_at', 'desc')
+            ->get();
+
         return view('home.index', [
             'posts' => $posts,
         ]);

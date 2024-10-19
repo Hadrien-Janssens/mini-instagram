@@ -13,34 +13,20 @@ class UserController extends Controller
 {
     public function show(Request $request): View
     {
-
         $user = User::findOrFail($request->id);
-        $posts = Post::query()->where('user_id', '=', $request->id)->with('like')->orderBy('created_at', 'desc')->get();
 
-        foreach ($posts as $post) {
-            $post->is_liked = false;
-            foreach ($post->like as $like) {
-                if ($like->user_id === Auth::id()) {
-                    $post->is_liked = true;
-                }
-            }
-        }
-
-        // MEMBRE IS FOLLOWED BY AUTH ?
-        // get all followed membre by auth
-        $followeds = User::query()
-            ->whereIn('id', Follower::query()->where('follower_id', Auth::id())->pluck('followed_id'))
+        // Récupérer les posts avec la vérification des likes intégrée
+        $posts = Post::withCount(['like as is_liked' => function ($query) {
+            $query->where('user_id', Auth::id());
+        }])
+            ->where('user_id', $request->id)
+            ->orderBy('created_at', 'desc')
             ->get();
 
-        // user include followeds ?
-        $is_followed = false;
-        foreach ($followeds as  $followed) {
-            if ($followed->id === $user->id) {
-                $is_followed = true;
-            }
-        }
-
-
+        // Vérifier si l'utilisateur connecté suit l'utilisateur visité
+        $is_followed = Follower::where('follower_id', Auth::id())
+            ->where('followed_id', $user->id)
+            ->exists();
 
         return view('user.index', [
             'user' => $user,
