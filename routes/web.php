@@ -30,12 +30,23 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
 
     Route::get('/', function () {
-        // Récupérer les posts avec la vérification des likes intégrée
+        // Récupérer les posts avec la vérification des likes et les auteurs des posts
         $posts = Post::withCount(['like as is_liked' => function ($query) {
             $query->where('user_id', Auth::id());
         }])
+            ->with('user') // Charger explicitement la relation 'user'
             ->orderBy('created_at', 'desc')
             ->get();
+
+        // Récupérer les IDs des utilisateurs suivis par l'utilisateur connecté
+        $followedUserIds = Follower::where('follower_id', Auth::id())
+            ->pluck('followed_id')
+            ->toArray();
+
+        // Boucle pour ajouter le champ is_followed
+        foreach ($posts as $post) {
+            $post->is_followed = in_array($post->user_id, $followedUserIds);
+        }
 
         return view('home.index', [
             'posts' => $posts,

@@ -20,9 +20,7 @@
         <form action="{{ route('friend.destroy', $followed->id) }}" method="POST">
             @csrf
             @method('DELETE')
-            <button class="border bg-gray-100 dark:bg-slate-800 hover:bg-gray-200 transition rounded-md px-2 py-0.5">ne
-                plus
-                suivre</button>
+            <x-btn-secondary>ne plus suivre</x-btn-secondary>
         </form>
 
     </div>

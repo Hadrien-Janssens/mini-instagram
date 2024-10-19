@@ -24,12 +24,12 @@
                     <form action="{{ route('friend.destroy', $user->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button class="dark:border-slate-500 border rounded px-3 py-1 ">ne plus suivre</button>
+                        <x-btn-secondary>ne plus suivre</x-btn-secondary>
                     </form>
                 @else
                     <form action="{{ route('friend.store', $user->id) }}" method="POST">
                         @csrf
-                        <button class="dark:border-slate-500 border rounded px-3 py-1 ">suivre</button>
+                        <x-btn-secondary>suivre</x-btn-secondary>
                     </form>
                 @endif
             @endif

@@ -14,9 +14,16 @@
             @if ($post->user_id !== Auth::id() && Route::currentRouteName() !== 'user.index')
                 <div>
                     @if ($post->is_followed)
-                        <button class="border rounded-md px-3 py-0.5">ne plus suivre</button>
+                        <form action="{{ route('friend.destroy', $post->user->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <x-btn-secondary>ne plus suivre</x-btn-secondary>
+                        </form>
                     @else
-                        <button class="border rounded-md px-3 py-0.5">suivre</button>
+                        <form action="{{ route('friend.store', $post->user->id) }}" method="POST">
+                            @csrf
+                            <x-btn-secondary>suivre</x-btn-secondary>
+                        </form>
                     @endif
                 </div>
             @endif
