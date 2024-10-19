@@ -40,7 +40,7 @@
     </div>
     <div class="mt-10">
         @foreach ($posts as $post)
-            <x-post :post='$post'></x-post>
+            <x-post :post='$post' :comments='$comments'></x-post>
         @endforeach
     </div>
 </x-app-layout>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PostCreateRequest;
+use App\Models\Comment;
 use App\Models\Post;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -55,14 +56,24 @@ class PostController extends Controller
      */
     public function show(Post $post): View
     {
-        $userOfPost = $post->user;
 
+        // Récupérer le post avec les likes et l'utilisateur
+        $post = Post::with(['user', 'like'])->find($post->id);
+
+        // Récupérer les commentaires avec pagination, tout en chargeant l'utilisateur de chaque commentaire
+        $comments = $post->comments()->with('user')->paginate(2); // 10 commentaires par page
+
+        // Vérifier si l'utilisateur suit l'auteur du post
+        $userOfPost = $post->user;
         $post->is_followed = Auth::user()->followers->contains('followed_id', $userOfPost->id);
 
+        // Vérifier si le post est liké par l'utilisateur connecté
         $post->is_liked = $post->like->contains('user_id', Auth::id());
 
+        // Retourner la vue avec le post et les commentaires paginés
         return view('post.show', [
-            'post' => $post
+            'post' => $post,
+            'comments' => $comments, // Ajouter les commentaires paginés ici
         ]);
     }
 

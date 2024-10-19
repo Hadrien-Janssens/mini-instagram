@@ -31,7 +31,8 @@ class UserController extends Controller
         return view('user.index', [
             'user' => $user,
             'posts' => $posts,
-            'is_followed' => $is_followed
+            'is_followed' => $is_followed,
+            'comments' => []
         ]);
     }
 }

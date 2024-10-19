@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\followerController;
 use App\Http\Controllers\friendController;
 use App\Http\Controllers\LikeController;
@@ -46,10 +47,12 @@ Route::middleware('auth')->group(function () {
         // Boucle pour ajouter le champ is_followed
         foreach ($posts as $post) {
             $post->is_followed = in_array($post->user_id, $followedUserIds);
+            $comments = $post->comments()->with('user')->paginate(2);
         }
 
         return view('home.index', [
             'posts' => $posts,
+            'comments' => $comments
         ]);
     })->name('home.index');
 
@@ -66,6 +69,7 @@ Route::middleware('auth')->group(function () {
     Route::get('message', [MessageController::class, 'index'])->name('message.index');
     Route::get('notification', [NotificationController::class, 'index'])->name('notification.index');
     Route::post('likePost/{post}', [LikeController::class, 'index'])->name('likePost');
+    Route::resource('comment', CommentController::class);
 });
 
 require __DIR__ . '/auth.php';

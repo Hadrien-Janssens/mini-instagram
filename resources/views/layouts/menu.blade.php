@@ -49,7 +49,7 @@
             <li>
                 <a class= "flex items-center  gap-3 hover:bg-slate-100 dark:hover:bg-slate-600 transition py-3 rounded-lg pl-2"
                     href="{{ route($link['url'], Auth::id()) }}">
-                    <x-dynamic-component :component="$link['icon']" class="text-gray-500 w-5" />
+                    <x-dynamic-component :component="$link['icon']" class="text-gray-500 dark:text-gray-300 w-5" />
                     {{ $link['name'] }}
                 </a>
             </li>
