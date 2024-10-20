@@ -17,7 +17,7 @@
 </head>
 
 <body class="font-sans antialiased  overflow-hidden ">
-    <div class="min-h-screen dark:text-gray-100 dark:bg-slate-800 text-gray-900 bg-slate-50">
+    <div class="min-h-screen dark:text-gray-100 dark:bg-slate-800 text-gray-900 bg-slate-50 ">
         @include('layouts.navigation')
 
         <!-- Page Heading -->
@@ -30,9 +30,9 @@
         @endisset
 
         <!-- Page Content -->
-        <main class="flex justify-between max-w-7xl m-auto" {{ $attributes->merge(['class' => '']) }}>
+        <main class="flex justify-between max-w-7xl m-auto " {{ $attributes->merge(['class' => '']) }}>
             @include('layouts.menu')
-            <div id="scrollable-component"
+            <div id="scrollable-component "
                 class=" shrink-0 grow basis-[800px] overflow-scroll no-scrollbar h-[calc(100vh-64px)] px-5 py-10 pt-6 ">
                 {{ $slot }}
             </div>

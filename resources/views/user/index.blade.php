@@ -12,8 +12,6 @@
                 @endif
             </div>
         </div>
-
-
     </div>
 
     <div class="w-7/12 ml-auto">
@@ -40,8 +38,13 @@
     </div>
     <div class="mt-10">
         <x-searchbar></x-searchbar>
-        @foreach ($posts as $post)
+        @forelse ($posts as $post)
             <x-post :post='$post' :comments='$comments'></x-post>
-        @endforeach
+        @empty
+            <div class="text-gray-400 italic text-center border border-gray-500 rounded py-2">Aucun post n'a été trouvé
+                pour
+                ta
+                recherche</div>
+        @endforelse
     </div>
 </x-app-layout>

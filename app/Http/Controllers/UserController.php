@@ -13,13 +13,21 @@ class UserController extends Controller
 {
     public function show(Request $request): View
     {
+        // Récupérer l'utilisateur visité
         $user = User::findOrFail($request->id);
 
-        // Récupérer les posts avec la vérification des likes intégrée
-        $posts = Post::withCount(['like as is_liked' => function ($query) {
-            $query->where('user_id', Auth::id());
-        }])
-            ->where('user_id', $request->id)
+        // Récupérer les posts de $user avec la vérification des likes intégrée
+        $posts = Post::where('user_id', $user->id)  // Filtre pour les posts de cet utilisateur
+            ->withCount(['like as is_liked' => function ($query) {
+                $query->where('user_id', Auth::id());
+            }])
+
+            ->when($request->query('search'), function ($query, $search) {
+                $query->where(function ($query) use ($search) {
+                    $query->where('content', 'like', '%' . $search . '%')
+                        ->orWhere('title', 'like', '%' . $search . '%');
+                });
+            })
             ->orderBy('created_at', 'desc')
             ->get();
 
