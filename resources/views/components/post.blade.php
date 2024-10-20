@@ -56,11 +56,11 @@
 
 
 
-                    <x-dropdown-link :href="route('profile.edit')">
+                    <x-dropdown-link :href="route('user.index', $post->user)">
                         {{ __('profil') }}
                     </x-dropdown-link>
 
-                    <x-dropdown-link :href="route('profile.edit')">
+                    <x-dropdown-link :href="route('post.show', $post)">
                         {{ __('voir plus') }}
                     </x-dropdown-link>
                     <hr>
@@ -117,7 +117,7 @@
 
     {{-- FOOTER POST --}}
     <div class="flex gap-3 justify-end mt-">
-        <x-btn-secondary>Commenter</x-btn-secondary>
+        <x-btn-secondary>Partager</x-btn-secondary>
         <form action="{{ route('likePost', $post) }}" method="POST">
             @csrf
             @if ($post->is_liked)
@@ -128,7 +128,7 @@
         </form>
     </div>
 
-    <div class="flex flex-col gap-4">
+    <div class="flex flex-col gap-4 max-h-96   overflow-scroll no-scrollbar">
         @foreach ($comments as $comment)
             <div>
                 <div class="flex gap-2">
@@ -138,16 +138,24 @@
                         <p class="text-sm"> {{ $comment->content }}</p>
                     </div>
                 </div>
+                <div class=" border-b border-slate-600 h-1 mx-5 my-2"></div>
 
             </div>
         @endforeach
 
-        @if ($comments === [])
-            <p class="text-gray-500">Aucun commentaire</p>
-        @else
-            {{ $comments->links() }}
-        @endif
-
     </div>
+    <div>
+        <form action="{{ route('comment.store', $post) }}" method="POST">
+            @csrf
+            <textarea name="content" id="" cols="20" rows="3"
+                class="w-full bg-transparent bg-slate-800 rounded resize-none"></textarea>
+            <x-btn-secondary>Commenter</x-btn-secondary>
+    </div>
+
+    @if ($comments === [])
+        <p class="text-gray-500">Aucun commentaire</p>
+    @else
+        {{ $comments->links() }}
+    @endif
 
 </div>

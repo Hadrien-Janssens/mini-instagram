@@ -61,7 +61,7 @@ class PostController extends Controller
         $post = Post::with(['user', 'like'])->find($post->id);
 
         // Récupérer les commentaires avec pagination, tout en chargeant l'utilisateur de chaque commentaire
-        $comments = $post->comments()->with('user')->paginate(2); // 10 commentaires par page
+        $comments = $post->comments()->with('user')->paginate(5); // 10 commentaires par page
 
         // Vérifier si l'utilisateur suit l'auteur du post
         $userOfPost = $post->user;

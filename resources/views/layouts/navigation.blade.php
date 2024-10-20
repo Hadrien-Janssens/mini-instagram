@@ -5,7 +5,7 @@
             <div class="flex">
 
                 <x-nav-link :href="route('home.index')">
-                    <p class="font-extrabold text-2xl text-blue-600">Laragram</p>
+                    <p class="font-extrabold text-2xl text-slate-800 dark:text-gray-200">Laragram</p>
                 </x-nav-link>
 
                 <!-- Navigation Links -->
@@ -17,17 +17,6 @@
                     @endif
                 </div>
             </div>
-            {{-- SEARCHBAR --}}
-            <form action="{{ route('post.store') }}" class=" flex flex-col grow gap-3 max-w-[800px]" method="POST">
-                @csrf
-                <div class=" flex w-full gap-3 ">
-                    <input type="text" placeholder="Rechercher un titre, autheur ou tag"
-                        class="grow dark:bg-slate-800 text-neutral-900 border-none rounded-md" name="title">
-                    <button
-                        class=" bg-blue-500 dark:bg-cyan-800  rounded-md shadow-sm text-blue-50 px-5">Rechercher</button>
-                </div>
-            </form>
-
 
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <div

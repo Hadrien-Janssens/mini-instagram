@@ -32,13 +32,34 @@
         <!-- Page Content -->
         <main class="flex justify-between max-w-7xl m-auto" {{ $attributes->merge(['class' => '']) }}>
             @include('layouts.menu')
-            <div
+            <div id="scrollable-component"
                 class=" shrink-0 grow basis-[800px] overflow-scroll no-scrollbar h-[calc(100vh-64px)] px-5 py-10 pt-6 ">
                 {{ $slot }}
             </div>
             <x-sidebar :users='$users'></x-sidebar>
         </main>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Cible l'élément scrollable (modifie l'ID si nécessaire)
+            const scrollableComponent = document.getElementById('scrollable-component');
+
+            // Restaurer la position du scroll sur l'élément scrollable
+            const scrollPosition = sessionStorage.getItem('scrollPosition');
+            if (scrollPosition && scrollableComponent) {
+                setTimeout(() => {
+                    scrollableComponent.scrollTo(0, parseInt(scrollPosition));
+                }, 10); // Laisser un léger délai pour que le contenu soit bien chargé
+            }
+
+            // Sauvegarder la position du scroll avant de quitter la page
+            window.addEventListener('beforeunload', function() {
+                if (scrollableComponent) {
+                    sessionStorage.setItem('scrollPosition', scrollableComponent.scrollTop);
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

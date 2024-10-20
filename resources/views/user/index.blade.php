@@ -1,6 +1,6 @@
 <x-app-layout class="flex justify-between">
     {{-- HEADER  --}}
-    <div class="h-64 my-6 bg-slate-200 w-full rounded-lg">
+    <div class="h-64 mb-6 bg-slate-200 w-full rounded-lg">
         {{-- AVATAR --}}
         <div
             class="rounded-full w-56  h-56 bg-orange-500 flex justify-center items-center  border-[2px] border-orange-900 text-orange-50 overflow-hidden  relative translate-y-1/2 translate-x-1/4 ">
@@ -39,6 +39,7 @@
 
     </div>
     <div class="mt-10">
+        <x-searchbar></x-searchbar>
         @foreach ($posts as $post)
             <x-post :post='$post' :comments='$comments'></x-post>
         @endforeach
