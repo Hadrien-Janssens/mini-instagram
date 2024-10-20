@@ -148,7 +148,7 @@
         <form action="{{ route('comment.store', $post) }}" method="POST">
             @csrf
             <textarea name="content" id="" cols="20" rows="3"
-                class="w-full bg-transparent bg-slate-800 rounded resize-none"></textarea>
+                class="w-full  dark:bg-slate-800 shadow border-none bg-gray-50  rounded resize-none"></textarea>
             <x-btn-secondary>Commenter</x-btn-secondary>
     </div>
 
