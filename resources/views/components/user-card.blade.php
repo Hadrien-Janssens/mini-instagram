@@ -17,11 +17,18 @@
 
         <a href="{{ route('user.index', $followed) }}" class="font-bold">{{ $followed->name }}</a>
 
-        <form action="{{ route('friend.destroy', $followed->id) }}" method="POST">
-            @csrf
-            @method('DELETE')
-            <x-btn-secondary>ne plus suivre</x-btn-secondary>
-        </form>
+        @if (!$followed->is_followed_by_me)
+            <form action="{{ route('friend.store', $followed->id) }}" method="POST">
+                @csrf
+                <x-btn-secondary>suivre</x-btn-secondary>
+            </form>
+        @else
+            <form action="{{ route('friend.destroy', $followed->id) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <x-btn-secondary>ne plus suivre</x-btn-secondary>
+            </form>
+        @endif
 
     </div>
 
