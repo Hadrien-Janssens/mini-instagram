@@ -11,7 +11,7 @@ use Illuminate\View\View;
 
 class UserController extends Controller
 {
-    public function show(Request $request): View
+    public function index(Request $request): View
     {
         // Récupérer l'utilisateur visité
         $user = User::findOrFail($request->id);

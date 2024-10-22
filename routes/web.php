@@ -36,7 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('post', PostController::class);
-    Route::get('user/{id}', [UserController::class, 'show'])->name('user.index');
+    Route::get('user/{id}', [UserController::class, 'index'])->name('user.index');
     Route::get('follower', [FollowerController::class, 'index'])->name('follower.index');
     Route::get('friend', [friendController::class, 'index'])->name('friend.index');
     Route::delete('friend/{id}', [friendController::class, 'destroy'])->name('friend.destroy');
@@ -44,7 +44,6 @@ Route::middleware('auth')->group(function () {
     Route::get('message', [MessageController::class, 'index'])->name('message.index');
     Route::get('notification', [NotificationController::class, 'index'])->name('notification.index');
     Route::post('likePost/{post}', [LikeController::class, 'index'])->name('likePost');
-
     Route::resource('comment', CommentController::class);
 });
 
