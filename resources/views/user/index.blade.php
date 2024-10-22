@@ -37,7 +37,7 @@
 
     </div>
     <div class="mt-10">
-        <x-searchbar></x-searchbar>
+        <x-searchbar placeholder="Rechercher une publication de {{ $user->name }}"></x-searchbar>
         @forelse ($posts as $post)
             <x-post :post='$post' :comments='$comments'></x-post>
         @empty

@@ -13,9 +13,7 @@ class FollowerController extends Controller
 {
     public function index(): View
     {
-        // $followers = User::query()
-        //     ->whereIn('id', Follower::query()->where('followed_id', Auth::id())->pluck('follower_id'))
-        //     ->get();
+
         $userId = Auth::id();
 
         // Obtenir les followers

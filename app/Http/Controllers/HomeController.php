@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Follower;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
@@ -30,6 +31,9 @@ class HomeController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
+        $users = User::when($request->query('search'), function ($query, $search) {
+            $query->where('name', 'like', '%' . $search . '%');
+        })->get();
 
         // Récupérer les IDs des utilisateurs suivis par l'utilisateur connecté
         $followedUserIds = Follower::where('follower_id', Auth::id())
@@ -44,6 +48,7 @@ class HomeController extends Controller
 
         return view('home.index', [
             'posts' => $posts,
+            'users' => $users,
             'comments' => empty($comments) ? [] : $comments
         ]);
     }
