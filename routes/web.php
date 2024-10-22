@@ -44,6 +44,7 @@ Route::middleware('auth')->group(function () {
     Route::get('message', [MessageController::class, 'index'])->name('message.index');
     Route::get('notification', [NotificationController::class, 'index'])->name('notification.index');
     Route::post('likePost/{post}', [LikeController::class, 'index'])->name('likePost');
+
     Route::resource('comment', CommentController::class);
 });
 

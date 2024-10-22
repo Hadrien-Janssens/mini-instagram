@@ -116,6 +116,7 @@
 
     {{-- FOOTER POST --}}
     <div class="flex gap-3 justify-end mt-">
+
         <x-btn-secondary>Partager</x-btn-secondary>
         <form action="{{ route('likePost', $post) }}" method="POST">
             @csrf
@@ -127,8 +128,8 @@
         </form>
     </div>
 
-    <div class="flex flex-col gap-4 max-h-96   overflow-scroll no-scrollbar">
-        @foreach ($comments as $comment)
+    <div class="flex flex-col gap-4 max-h-52    overflow-scroll no-scrollbar">
+        @forelse ($post->comments as $comment)
             <div>
                 <div class="flex gap-2">
                     <x-avatar :user='$comment->user' :width='8'></x-avatar>
@@ -140,21 +141,21 @@
                 <div class=" border-b border-slate-600 h-1 mx-5 my-2"></div>
 
             </div>
-        @endforeach
+        @empty
+            <p class="text-gray-500">Aucun commentaire</p>
+        @endforelse
+
+
 
     </div>
     <div>
-        <form action="{{ route('comment.store', $post) }}" method="POST">
+        <form action="{{ route('comment.store') }}" method="POST">
             @csrf
+            <input type="hidden" name="post_id" value="{{ $post->id }}">
             <textarea name="content" id="" cols="20" rows="3"
                 class="w-full  dark:bg-slate-800 shadow border-none bg-gray-50  rounded resize-none"></textarea>
             <x-btn-secondary>Commenter</x-btn-secondary>
+        </form>
     </div>
-
-    @if ($comments === [])
-        <p class="text-gray-500">Aucun commentaire</p>
-    @else
-        {{ $comments->links() }}
-    @endif
 
 </div>

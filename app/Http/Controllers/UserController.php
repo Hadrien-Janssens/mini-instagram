@@ -21,7 +21,9 @@ class UserController extends Controller
             ->withCount(['like as is_liked' => function ($query) {
                 $query->where('user_id', Auth::id());
             }])
-
+            ->with(['comments' => function ($query) {
+                $query->orderBy('created_at', 'desc');
+            }])
             ->when($request->query('search'), function ($query, $search) {
                 $query->where(function ($query) use ($search) {
                     $query->where('content', 'like', '%' . $search . '%')
@@ -35,6 +37,7 @@ class UserController extends Controller
         $is_followed = Follower::where('follower_id', Auth::id())
             ->where('followed_id', $user->id)
             ->exists();
+
 
         return view('user.index', [
             'user' => $user,
