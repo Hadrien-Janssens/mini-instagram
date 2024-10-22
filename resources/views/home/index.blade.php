@@ -34,6 +34,10 @@
                     class="font-semibold italic">{{ request('search') }}</span></p>
         @endif
 
+        @foreach ($followedUserPosts as $post)
+            <x-post :post=$post :comments='$comments'></x-post>
+        @endforeach
+
         @forelse ($posts as $post)
             <x-post :post=$post :comments='$comments'></x-post>
         @empty

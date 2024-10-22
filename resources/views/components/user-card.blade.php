@@ -17,7 +17,7 @@
 
         <a href="{{ route('user.index', $followed) }}" class="font-bold">{{ $followed->name }}</a>
 
-        @if (!$followed->is_followed_by_me)
+        @if (isset($followed->is_followed_by_me) && !$followed->is_followed_by_me)
             <form action="{{ route('friend.store', $followed->id) }}" method="POST">
                 @csrf
                 <x-btn-secondary>suivre</x-btn-secondary>

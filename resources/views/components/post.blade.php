@@ -33,7 +33,6 @@
                                 <form action="{{ route('friend.destroy', $post->user->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    {{-- <x-btn-secondary>ne plus suivre</x-btn-secondary> --}}
                                     <x-dropdown-link :href="route('logout')"
                                         onclick="event.preventDefault();
                                         this.closest('form').submit();">

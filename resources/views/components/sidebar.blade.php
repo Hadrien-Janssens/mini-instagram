@@ -1,7 +1,7 @@
 @props(['users'])
-<div class="basis-60 shrink-0 h-[calc(100vh-64px)] p-4 pt-0 flex flex-col gap-4">
-    <div class="h-1/2 flex flex-col ">
-        <p class="text-lg text-neutral-500 font-bold text-center mb-1">Connecté</p>
+<div class="basis-60 shrink-0 h-[calc(100vh-64px)] pt-0 flex flex-col justify-center">
+    <div class="h-1/2 grow-0 flex flex-col p-4">
+        <p class="text-lg text-slate-200 font-bold text-center mb-1">Connecté</p>
         <ul class="space-y-3 overflow-scroll no-scrollbar grow  p-3  bg-white dark:bg-slate-700 rounded-xl shadow-md ">
             @foreach ($users as $user)
                 <li
@@ -23,8 +23,8 @@
         </ul>
     </div>
 
-    <div class="h-1/2 flex flex-col">
-        <p class="text-lg text-neutral-500 font-bold text-center mb-1">Suggestion</p>
+    <div class="h-1/2 flex flex-col p-4">
+        <p class="text-lg text-slate-200 font-bold text-center mb-1">Suggestion</p>
         <ul class="space-y-3 overflow-scroll no-scrollbar  grow  p-3  bg-white dark:bg-slate-700 rounded-xl shadow-md ">
             @foreach ($users as $user)
                 <li
