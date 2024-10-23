@@ -43,20 +43,21 @@
     ];
 @endphp
 
-<div class="basis-60   h-[calc(100vh-64px)] shrink-0  flex flex-col justify-between py-5 px-5 font-bold  text-md ">
-    <ul class="bg-white dark:bg-slate-700 rounded-xl shadow-md p-6 flex flex-col ">
+<div class=" h-[calc(100vh-100px)] flex flex-col justify-between font-bold  text-md">
+    <ul class="bg-white dark:bg-slate-700 rounded-xl shadow-md py-6 flex flex-col grow-0">
         @foreach ($links as $link)
             <li>
-                <a class= "flex items-center  gap-3 hover:bg-slate-100 dark:hover:bg-slate-600 transition py-3 rounded-lg pl-2"
+                <a class= "flex items-center  gap-3 hover:bg-slate-100 dark:hover:bg-slate-600 transition py-3 px-5 rounded-lg "
                     href="{{ route($link['url'], Auth::id()) }}">
                     <x-dynamic-component :component="$link['icon']" class="text-gray-500 dark:text-gray-300 w-5" />
-                    {{ $link['name'] }}
+                    <p class="hidden lg:block"> {{ $link['name'] }}</p>
+
                 </a>
             </li>
         @endforeach
     </ul>
 
-    <div class=" bg-white dark:bg-slate-700  rounded-xl shadow-md py-3 pl-6 ">
+    <div class=" bg-white dark:bg-slate-700  rounded-xl shadow-md py-3 ">
         <form method="POST" action="{{ route('logout') }}">
             @csrf
 
@@ -64,7 +65,7 @@
                 class="hover:bg-slate-100 dark:hover:bg-slate-600 transition block py-3 rounded-lg pl-2"
                 onclick="event.preventDefault();
                 this.closest('form').submit();">
-                {{ __('Log Out') }}
+                {{ __('Logout') }}
             </x-dropdown-link>
         </form>
     </div>

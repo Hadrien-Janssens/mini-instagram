@@ -54,10 +54,7 @@ class CommentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Comment $comment)
-    {
-        //
-    }
+    public function edit(Comment $comment) {}
 
     /**
      * Update the specified resource in storage.
@@ -72,6 +69,8 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
-        //
+        $comment->delete();
+
+        return back();
     }
 }

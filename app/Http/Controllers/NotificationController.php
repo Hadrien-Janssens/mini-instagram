@@ -18,4 +18,6 @@ class NotificationController extends Controller
 
         return view('notification.index', compact('notifications'));
     }
+
+    public function destroy(Notification $notification) {}
 }

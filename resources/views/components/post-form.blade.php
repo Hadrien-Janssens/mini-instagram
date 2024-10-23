@@ -5,7 +5,7 @@
         <div class=" flex w-full gap-3">
             <input type="text" placeholder="Que ressens-tu ?"
                 class="grow dark:bg-slate-800 border-none text-neutral-900 border-slate-200 rounded-md" name="title">
-            <button class=" bg-blue-500 dark:bg-cyan-800 rounded-md shadow-sm text-blue-50 px-5 ">Publier</button>
+            <button class=" bg-blue-500 dark:bg-cyan-800 rounded-md shadow-sm text-blue-50 px-5 z-10 ">Publier</button>
         </div>
         @error('title')
             <p class="text-red-400">{{ $message }}</p>

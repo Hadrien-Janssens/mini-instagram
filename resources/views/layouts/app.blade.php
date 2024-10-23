@@ -30,13 +30,13 @@
         @endisset
 
         <!-- Page Content -->
-        <main class="flex justify-between max-w-7xl m-auto " {{ $attributes->merge(['class' => '']) }}>
+        <main class="flex justify-center max-w-7xl m-auto p-5 gap-5" {{ $attributes->merge(['class' => '']) }}>
             @include('layouts.menu')
             <div id="scrollable-component"
-                class=" shrink-0 grow basis-[800px] overflow-scroll no-scrollbar h-[calc(100vh-64px)] px-5 py-10 pt-6 ">
+                class=" grow basis-[800px] max-w-[1024px]  overflow-scroll no-scrollbar h-[calc(100vh-64px)] ">
                 {{ $slot }}
             </div>
-            <x-sidebar :users='$users'></x-sidebar>
+            {{-- <x-sidebar :users='$users'></x-sidebar> --}}
         </main>
     </div>
     <script>
@@ -47,20 +47,40 @@
 
             // Restaurer la position du scroll sur l'élément scrollable
             const scrollPosition = sessionStorage.getItem('scrollPosition');
-            if (scrollPosition && scrollableComponent) {
-                setTimeout(() => {
-                    scrollableComponent.scrollTo(0, parseInt(scrollPosition));
-                }, 10); // Laisser un léger délai pour que le contenu soit bien chargé
+            if (scrollPosition && scrollableComponent && window.location.href === sessionStorage.getItem(
+                    'pageBefore')) {
+                scrollableComponent.scrollTo(0, parseInt(scrollPosition));
+                //loguer l'url de la page
+                console.log(sessionStorage.getItem(
+                    'pageBefore'));
             }
 
             // Sauvegarder la position du scroll avant de quitter la page
             window.addEventListener('beforeunload', function() {
                 if (scrollableComponent) {
                     sessionStorage.setItem('scrollPosition', scrollableComponent.scrollTop);
+                    sessionStorage.setItem('pageBefore', window.location.href);
                 }
             });
         });
+
+
+
+
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelectorAll(".edit-btn").forEach((button) => {
+
+                button.addEventListener("click", function() {
+                    const commentId = this.dataset.commentId;
+                    const form = document.querySelector(`#edit-form-${commentId}`);
+                    const comment = document.querySelector(`#comment-${commentId}`);
+                    comment.classList.toggle("hidden"); // Cache ou affiche le commentaire
+                    form.classList.toggle("hidden"); // Cache ou affiche le formulaire
+                });
+            });
+        });
     </script>
+
 </body>
 
 </html>

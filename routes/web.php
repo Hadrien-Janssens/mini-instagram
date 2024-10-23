@@ -42,9 +42,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('friend/{id}', [friendController::class, 'destroy'])->name('friend.destroy');
     Route::post('friend/{id}', [friendController::class, 'store'])->name('friend.store');
     Route::get('message', [MessageController::class, 'index'])->name('message.index');
-    Route::get('notification', [NotificationController::class, 'index'])->name('notification.index');
     Route::post('likePost/{post}', [LikeController::class, 'index'])->name('likePost');
     Route::resource('comment', CommentController::class);
+
+    // Route::get('notification', [NotificationController::class, 'index'])->name('notification.index');
+    Route::resource('notification', NotificationController::class);
 });
 
 require __DIR__ . '/auth.php';
