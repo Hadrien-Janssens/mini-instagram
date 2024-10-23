@@ -61,7 +61,14 @@ class CommentController extends Controller
      */
     public function update(Request $request, Comment $comment)
     {
-        //
+        $request->validate([
+            'content' => 'required',
+        ]);
+
+        $comment->content = $request->content;
+        $comment->save();
+
+        return back()->with('success', 'Commentaire modifié avec succès');
     }
 
     /**

@@ -150,11 +150,12 @@
                             @csrf
                             @method('PUT')
                             <div class="flex gap-2">
-                                <input type="hidden" name="post_id" value="{{ $comment->id }}">
                                 <textarea name="content" id="" cols="" rows="1"
                                     class="w-full  dark:bg-slate-800 shadow border-none bg-gray-50  rounded resize-none">{{ $comment->content }}</textarea>
                                 <x-btn-secondary>modifier</x-btn-secondary>
-                                <x-btn-secondary>annuler</x-btn-secondary>
+                                <x-btn-secondary
+                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();">annuler</x-btn-secondary>
                             </div>
                         </form>
                     </div>
