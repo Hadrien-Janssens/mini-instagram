@@ -27,7 +27,7 @@
         ],
         [
             'name' => 'Messages',
-            'url' => 'message.index',
+            'url' => 'conversation.index',
             'icon' => 'fas-comments',
         ],
         [

@@ -5,7 +5,7 @@ use App\Http\Controllers\followerController;
 use App\Http\Controllers\friendController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LikeController;
-use App\Http\Controllers\MessageController;
+use App\Http\Controllers\ConversationController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
@@ -41,7 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::get('friend', [friendController::class, 'index'])->name('friend.index');
     Route::delete('friend/{id}', [friendController::class, 'destroy'])->name('friend.destroy');
     Route::post('friend/{id}', [friendController::class, 'store'])->name('friend.store');
-    Route::get('message', [MessageController::class, 'index'])->name('message.index');
+    Route::get('conversation', [ConversationController::class, 'index'])->name('conversation.index');
     Route::post('likePost/{post}', [LikeController::class, 'index'])->name('likePost');
     Route::resource('comment', CommentController::class);
 
