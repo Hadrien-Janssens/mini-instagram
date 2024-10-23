@@ -121,13 +121,13 @@
         <form action="{{ route('likePost', $post) }}" method="POST">
             @csrf
             @if ($post->is_liked)
-                <x-btn-secondary>Disliker</x-btn-secondary>
+                <x-btn-secondary> Disliker</x-btn-secondary>
             @else
                 <x-btn-secondary>Liker</x-btn-secondary>
             @endif
         </form>
     </div>
-
+    <div>{{ $post->likes_count }} J'aime</div>
     {{-- si la route est differente de post.show , ne pas afficher les commentaire --}}
 
     @if (Route::currentRouteName() === 'post.show')

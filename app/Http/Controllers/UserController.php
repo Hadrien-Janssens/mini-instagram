@@ -33,6 +33,11 @@ class UserController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
+        foreach ($posts as $post) {
+            $post->likes_count = $post->like->count();
+        }
+
+
         // Vérifier si l'utilisateur connecté suit l'utilisateur visité
         $is_followed = Follower::where('follower_id', Auth::id())
             ->where('followed_id', $user->id)

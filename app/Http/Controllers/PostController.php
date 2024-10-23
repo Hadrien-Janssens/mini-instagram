@@ -69,6 +69,7 @@ class PostController extends Controller
 
         // Vérifier si le post est liké par l'utilisateur connecté
         $post->is_liked = $post->like->contains('user_id', Auth::id());
+        $post->likes_count = $post->like->count();
 
         // Retourner la vue avec le post et les commentaires paginés
         return view('post.show', [

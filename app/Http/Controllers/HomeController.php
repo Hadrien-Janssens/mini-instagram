@@ -70,6 +70,7 @@ class HomeController extends Controller
         // Boucle pour ajouter le champ is_followed
         foreach ($followedUserPosts as $post) {
             $post->is_liked = $post->like->contains('user_id', Auth::id());
+            $post->likes_count = $post->like->count();
             $post->is_followed = in_array($post->user_id, $followedUserIds);
             $comments = $post->comments()->with('user')->paginate(2);
         }
@@ -78,6 +79,7 @@ class HomeController extends Controller
             $post->is_liked = $post->like->contains('user_id', Auth::id());
             $post->is_followed = in_array($post->user_id, $followedUserIds);
             $comments = $post->comments()->with('user')->paginate(5);
+            $post->likes_count = $post->like->count();
         }
 
         return view('home.index', [
