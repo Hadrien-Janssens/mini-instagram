@@ -6,12 +6,14 @@ use App\Http\Controllers\friendController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ConversationController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Models\Follower;
 use App\Models\Like;
+use App\Models\Message;
 use App\Models\Post;
 use App\Models\User;
 use GuzzleHttp\Psr7\Request;
@@ -44,6 +46,10 @@ Route::middleware('auth')->group(function () {
     Route::get('conversation', [ConversationController::class, 'index'])->name('conversation.index');
     Route::post('likePost/{post}', [LikeController::class, 'index'])->name('likePost');
     Route::resource('comment', CommentController::class);
+    // Route::resource('message', MessageController::class);
+    Route::get('message/{conversation}', [MessageController::class, 'show'])->name('message.show');
+    Route::post('message', [MessageController::class, 'store'])->name('message.store');
+
 
     // Route::get('notification', [NotificationController::class, 'index'])->name('notification.index');
     Route::resource('notification', NotificationController::class);

@@ -36,7 +36,6 @@
                 class=" grow basis-[800px] max-w-[1024px]  overflow-scroll no-scrollbar h-[calc(100vh-64px)] ">
                 {{ $slot }}
             </div>
-            {{-- <x-sidebar :users='$users'></x-sidebar> --}}
         </main>
     </div>
     <script>
@@ -50,9 +49,6 @@
             if (scrollPosition && scrollableComponent && window.location.href === sessionStorage.getItem(
                     'pageBefore')) {
                 scrollableComponent.scrollTo(0, parseInt(scrollPosition));
-                //loguer l'url de la page
-                console.log(sessionStorage.getItem(
-                    'pageBefore'));
             }
 
             // Sauvegarder la position du scroll avant de quitter la page
