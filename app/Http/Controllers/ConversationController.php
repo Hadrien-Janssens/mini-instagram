@@ -24,13 +24,22 @@ class ConversationController extends Controller
     }
     public function create(User $user): RedirectResponse
     {
-        // create conversation
-        $conversations = new Conversation();
-        $conversations->sender_id = Auth::id();
-        $conversations->receiver_id = $user->id;
-        $conversations->save();
+        //check if conversation already existe
+        $conversation = Conversation::where('receiver_id', Auth::id())->where('sender_id', $user->id)->first();
+
+        if ($conversation === null) {
+            $conversation = Conversation::where('sender_id', Auth::id())
+                ->where('receiver_id', $user->id)->first();
+        }
+        if ($conversation === null) {
+            // create conversation
+            $conversation = new Conversation();
+            $conversation->sender_id = Auth::id();
+            $conversation->receiver_id = $user->id;
+            $conversation->save();
+        }
 
         // go to message page
-        return redirect()->route('message.show', $conversations);
+        return redirect()->route('message.show', $conversation);
     }
 }

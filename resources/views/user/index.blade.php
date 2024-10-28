@@ -18,25 +18,25 @@
         <div class=" flex justify-between items-center mt-4">
             <p class="text-3xl font-extrabold">{{ $user->name }}</p>
             @if ($user->id !== Auth::id())
-                @if ($is_followed)
-                    <div class="flex gap-2">
-                        <form action="{{ route('conversation.create', $user) }}" method="POST">
-                            @csrf
-                            @method('POST')
-                            <x-btn-secondary>contacter</x-btn-secondary>
-                        </form>
+                <div class="flex gap-2">
+                    <form action="{{ route('conversation.create', $user) }}" method="POST">
+                        @csrf
+                        @method('POST')
+                        <x-btn-secondary>contacter</x-btn-secondary>
+                    </form>
+                    @if ($is_followed)
                         <form action="{{ route('friend.destroy', $user->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <x-btn-secondary>ne plus suivre</x-btn-secondary>
                         </form>
-                    </div>
-                @else
-                    <form action="{{ route('friend.store', $user->id) }}" method="POST">
-                        @csrf
-                        <x-btn-secondary>suivre</x-btn-secondary>
-                    </form>
-                @endif
+                    @else
+                        <form action="{{ route('friend.store', $user->id) }}" method="POST">
+                            @csrf
+                            <x-btn-secondary>suivre</x-btn-secondary>
+                        </form>
+                    @endif
+                </div>
             @endif
         </div>
         <p class="text-gray-500">{{ $user->bio }}</p>
