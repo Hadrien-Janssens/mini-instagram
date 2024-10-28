@@ -19,11 +19,18 @@
             <p class="text-3xl font-extrabold">{{ $user->name }}</p>
             @if ($user->id !== Auth::id())
                 @if ($is_followed)
-                    <form action="{{ route('friend.destroy', $user->id) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <x-btn-secondary>ne plus suivre</x-btn-secondary>
-                    </form>
+                    <div class="flex gap-2">
+                        <form action="{{ route('conversation.create', $user) }}" method="POST">
+                            @csrf
+                            @method('POST')
+                            <x-btn-secondary>contacter</x-btn-secondary>
+                        </form>
+                        <form action="{{ route('friend.destroy', $user->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <x-btn-secondary>ne plus suivre</x-btn-secondary>
+                        </form>
+                    </div>
                 @else
                     <form action="{{ route('friend.store', $user->id) }}" method="POST">
                         @csrf

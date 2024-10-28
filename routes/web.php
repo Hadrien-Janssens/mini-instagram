@@ -34,21 +34,30 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home.index');
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
     Route::resource('post', PostController::class);
+
     Route::get('user/{id}', [UserController::class, 'index'])->name('user.index');
+
     Route::get('follower', [FollowerController::class, 'index'])->name('follower.index');
+
     Route::get('friend', [friendController::class, 'index'])->name('friend.index');
     Route::delete('friend/{id}', [friendController::class, 'destroy'])->name('friend.destroy');
     Route::post('friend/{id}', [friendController::class, 'store'])->name('friend.store');
+
     Route::get('conversation', [ConversationController::class, 'index'])->name('conversation.index');
+    Route::post('conversation/{user}',  [ConversationController::class, 'create'])->name('conversation.create');
+
     Route::post('likePost/{post}', [LikeController::class, 'index'])->name('likePost');
+
     Route::resource('comment', CommentController::class);
     // Route::resource('message', MessageController::class);
     Route::get('message/{conversation}', [MessageController::class, 'show'])->name('message.show');
-    Route::post('message', [MessageController::class, 'store'])->name('message.store');
+    Route::post('message/{user}', [MessageController::class, 'store'])->name('message.store');
 
 
     // Route::get('notification', [NotificationController::class, 'index'])->name('notification.index');
