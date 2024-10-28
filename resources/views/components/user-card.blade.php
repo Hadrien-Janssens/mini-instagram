@@ -27,6 +27,9 @@
                 @csrf
                 @method('DELETE')
                 <x-btn-secondary>ne plus suivre</x-btn-secondary>
+
+
+
             </form>
         @endif
 

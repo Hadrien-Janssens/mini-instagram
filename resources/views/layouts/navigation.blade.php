@@ -29,6 +29,7 @@
                         @endif
                     </a>
                 </div>
+                <p>notif {{ $nofications_notSeen }}</p>
 
             </div>
 

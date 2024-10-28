@@ -12,6 +12,12 @@ class NotificationController extends Controller
 {
     public function index(): View
     {
+        // mettre la notification en seen
+        $notification_notSeen = Notification::where('seen', false)
+            ->where('user_id', Auth::id());
+        $notification_notSeen->update(['seen' => true]);
+
+
         $notifications = Notification::where('user_id', Auth::id())
             ->with('byUser')
             ->get();

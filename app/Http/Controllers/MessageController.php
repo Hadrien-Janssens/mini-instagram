@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Conversation;
 use App\Models\Message;
+use App\Models\Notification;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,13 +14,6 @@ class MessageController extends Controller
 
     public function show(Conversation $conversation)
     {
-        // $mes = new Message();
-        // $mes->conversation_id = 1;
-        // $mes->sender_id = 2;
-        // $mes->receiver_id = Auth::id();
-        // $mes->content = 'Salut 👋, oui et toi ? ';
-        // $mes->save();
-
         $messages = $conversation->messages()->with('sender')->with('receiver')->get();
         if ($conversation->receiver_id === Auth::id()) {
             $user = $conversation->sender()->first();
@@ -34,7 +28,6 @@ class MessageController extends Controller
     public function store(Request $request, User $user)
     {
         //récuperer les parametre de $request
-
         $request->validate([
             'content' => 'required'
         ]);
@@ -59,6 +52,13 @@ class MessageController extends Controller
         $message->receiver_id = $user->id;
         $message->content = $request->content;
         $message->save();
+
+        Notification::create([
+            'user_id' => $user->id,
+            'content' => Auth::user()->name . ' t\'as envoyé un message',
+            'link' => route('message.show', $conversation),
+            'Make_by_user_id' => Auth::id()
+        ]);
 
         return back();
     }

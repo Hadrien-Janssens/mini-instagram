@@ -26,7 +26,7 @@ class LikeController extends Controller
 
             Notification::create([
                 'user_id' => $post->user_id,
-                'content' => 'Ta publication ' . $post->title . ' a été likée par ',
+                'content' => 'Ta publication ' . $post->title . ' a été likée par  ' . Auth::user()->name,
                 'link' => route('post.show', $post),
                 'Make_by_user_id' => Auth::id()
             ]);

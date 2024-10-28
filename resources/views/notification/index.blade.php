@@ -6,10 +6,10 @@
         @foreach ($notifications as $notification)
             <div class="border border-gray-600 rounded p-3">
 
-                <p>{{ $notification->content }} <a class="font-extrabold italic underline"
-                        href="{{ route('user.index', $notification->byUser->id) }}">
-                        {{ $notification->byUser->name }}
-                    </a></p>
+                <a href="{{ $notification->link }}">
+
+                    <p>{!! $notification->content !!}</p>
+                </a>
 
 
 
