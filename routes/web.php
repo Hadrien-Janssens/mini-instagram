@@ -11,6 +11,7 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\NotificationsMiddleware;
 use App\Models\Follower;
 use App\Models\Like;
 use App\Models\Message;
@@ -32,7 +33,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', NotificationsMiddleware::class])->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -62,6 +63,8 @@ Route::middleware('auth')->group(function () {
 
     // Route::get('notification', [NotificationController::class, 'index'])->name('notification.index');
     Route::resource('notification', NotificationController::class);
+
+    Route::get('/notifications/unread-count', [NotificationController::class, 'unreadCount'])->name('notifications.unread-count');
 });
 
 require __DIR__ . '/auth.php';

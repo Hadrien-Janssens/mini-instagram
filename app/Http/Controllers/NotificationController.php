@@ -26,4 +26,14 @@ class NotificationController extends Controller
     }
 
     public function destroy(Notification $notification) {}
+
+    public function unreadCount()
+    {
+
+        if (Auth::check()) {
+            $countNotificationsNotSeen = Notification::where('user_id', Auth::id())->where('seen', false)->count();
+        }
+
+        return response()->json(['countNotificationsNotSeen' => $countNotificationsNotSeen]);
+    }
 }

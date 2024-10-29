@@ -18,7 +18,7 @@
                 </div>
             </div>
 
-            <div class="hidden sm:flex sm:items-center sm:ms-6">
+            <div class="hidden sm:flex sm:items-center sm:ms-6 relative">
                 <div
                     class="rounded-full w-10 h-10 bg-orange-500 flex justify-center items-center  border-[2px] border-orange-900 text-orange-50 overflow-hidden cursor-pointer ">
                     <a href="{{ route('user.index', Auth::user()) }}">
@@ -29,7 +29,7 @@
                         @endif
                     </a>
                 </div>
-                <p>notif {{ $nofications_notSeen }}</p>
+                <x-notif class="-top-1 -right-1" />
 
             </div>
 

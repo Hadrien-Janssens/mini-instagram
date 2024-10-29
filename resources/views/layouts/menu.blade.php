@@ -49,7 +49,12 @@
             <li>
                 <a class= "flex items-center  gap-3 hover:bg-slate-100 dark:hover:bg-slate-600 transition py-3 px-5 rounded-lg "
                     href="{{ route($link['url'], Auth::id()) }}">
-                    <x-dynamic-component :component="$link['icon']" class="text-gray-500 dark:text-gray-300 w-5" />
+                    <div class="relative">
+                        <x-dynamic-component :component="$link['icon']" class=" text-gray-500 dark:text-gray-300 w-5" />
+                        @if ($link['url'] === 'notification.index')
+                            <x-notif class="-top-1 -right-1" />
+                        @endif
+                    </div>
                     <p class="hidden lg:block"> {{ $link['name'] }}</p>
 
                 </a>
