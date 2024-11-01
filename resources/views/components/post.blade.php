@@ -62,7 +62,7 @@
                     <x-dropdown-link :href="route('post.show', $post)">
                         {{ __('voir plus') }}
                     </x-dropdown-link>
-                    <hr>
+
                     <!-- Auth::user() modification -->
                     @if (Auth::id() === $post->user_id)
                         <form method="POST" action="{{ route('logout') }}">
@@ -85,16 +85,7 @@
                             </x-dropdown-link>
                         </form>
                     @endif
-                    <hr>
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
 
-                        <x-dropdown-link :href="route('logout')"
-                            onclick="event.preventDefault();
-                                        this.closest('form').submit();">
-                            {{ __('signaler') }}
-                        </x-dropdown-link>
-                    </form>
                 </x-slot>
             </x-dropdown>
         </div>
@@ -117,7 +108,7 @@
     {{-- FOOTER POST --}}
     <div class="flex gap-3 justify-end mt-">
 
-        <x-btn-secondary>Partager</x-btn-secondary>
+
         <form action="{{ route('likePost', $post) }}" method="POST">
             @csrf
             @if ($post->is_liked)
@@ -226,17 +217,7 @@
                                     </x-dropdown-link>
                                 </form>
                             @endif
-                            <hr>
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
 
-                                <x-dropdown-link :href="route('logout')"
-                                    onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                    {{ __('signaler') }}
-                                </x-dropdown-link>
-                            </form>
-                        </x-slot>
                     </x-dropdown>
 
 

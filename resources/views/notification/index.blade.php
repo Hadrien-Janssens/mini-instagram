@@ -4,7 +4,7 @@
 
     <div class="flex flex-col gap-5">
         @foreach ($notifications as $notification)
-            <div class="border border-gray-600 rounded p-3">
+            <div class="border border-gray-400 rounded p-3 hover:bg-slate-200 dark:hover:bg-slate-700 transition">
 
                 <a href="{{ $notification->link }}">
 

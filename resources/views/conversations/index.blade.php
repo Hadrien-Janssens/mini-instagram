@@ -4,7 +4,8 @@
     <div class="flex flex-col gap-3  ">
         @foreach ($conversations as $conversation)
             <a href="{{ route('message.show', $conversation) }}">
-                <div class="flex gap-2 border rounded items-center p-2 cursor-pointer hover:bg-slate-700 transition  ">
+                <div
+                    class="flex gap-2 border rounded items-center p-2 cursor-pointer dark:hover:bg-slate-700 hover:bg-slate-200 transition  ">
                     @if ($conversation->sender_id == Auth::user()->id)
                         <x-avatar :user='$conversation->receiver' :width='8' :linkMode="false"></x-avatar>
                         <div>

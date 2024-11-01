@@ -1,5 +1,6 @@
 <x-guest-layout>
-    <p class="text-lg font-semibold mb-3">Crée un compte maintentant,<br> <span class="text-gray-500 text-base   ">c'est
+    <p class="text-lg font-semibold mb-3 dark:text-white">Crée un compte maintentant,<br> <span
+            class="text-gray-500 text-base   ">c'est
             simple et
             rapide
             !</span></p>

@@ -1,4 +1,4 @@
-<div class=" bg-white dark:bg-slate-700 rounded-xl shadow-md p-6 ">
+{{-- <div class=" bg-white dark:bg-slate-700 rounded-xl shadow-md p-6 ">
     <form action="{{ route('post.store') }}" class=" flex flex-col w-full gap-3" method="POST"
         enctype="multipart/form-data">
         @csrf
@@ -28,4 +28,4 @@
         </div>
 
     </form>
-</div>
+</div> --}}
