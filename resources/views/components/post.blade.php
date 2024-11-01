@@ -14,18 +14,12 @@
                 </div>
 
             </div>
-
-
-
             <x-dropdown align="right" width="48">
                 <x-slot name="trigger">
                     <x-polaris-menu-vertical-icon class=" h-10 text-gray-500 cursor-pointer" />
                 </x-slot>
 
                 <x-slot name="content">
-
-
-
 
                     @if ($post->user_id !== Auth::id() && Route::currentRouteName() !== 'user.index')
                         <div>
@@ -217,7 +211,7 @@
                                     </x-dropdown-link>
                                 </form>
                             @endif
-
+                        </x-slot>
                     </x-dropdown>
 
 

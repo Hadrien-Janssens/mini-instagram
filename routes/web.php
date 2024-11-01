@@ -56,12 +56,9 @@ Route::middleware(['auth', NotificationsMiddleware::class])->group(function () {
     Route::post('likePost/{post}', [LikeController::class, 'index'])->name('likePost');
 
     Route::resource('comment', CommentController::class);
-    // Route::resource('message', MessageController::class);
     Route::get('message/{conversation}', [MessageController::class, 'show'])->name('message.show');
     Route::post('message/{user}', [MessageController::class, 'store'])->name('message.store');
 
-
-    // Route::get('notification', [NotificationController::class, 'index'])->name('notification.index');
     Route::resource('notification', NotificationController::class);
 
     Route::get('/notifications/unread-count', [NotificationController::class, 'unreadCount'])->name('notifications.unread-count');

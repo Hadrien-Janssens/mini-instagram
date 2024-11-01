@@ -2,7 +2,7 @@
     <h2 class="text-xl font-semibold mb-3">Membre{{ count($followeds) > 1 ? 's' : '' }}
         suivi{{ count($followeds) > 1 ? 's' : '' }}</h2>
 
-    <div class="grid grid-cols-2 gap-4 ">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 ">
         @forelse ($followeds as $followed)
             <x-user-card :followed="$followed" />
         @empty

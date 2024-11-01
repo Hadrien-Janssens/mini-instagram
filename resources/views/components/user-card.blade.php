@@ -1,7 +1,7 @@
 @props(['followed'])
 
-<div class="shadow-md p-3 rounded-lg bg-white dark:bg-slate-700">
-    <div class="flex justify-between gap-2 items-center">
+<div class="shadow-md p-3 rounded-lg bg-white dark:bg-slate-700 min-w-80  ">
+    <div class="flex  justify-between gap-2 items-center ">
 
         @if ($followed->img_path)
             <div>
