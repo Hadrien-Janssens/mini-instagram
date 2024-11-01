@@ -63,9 +63,10 @@ class PostController extends Controller
         // Récupérer les commentaires avec pagination, tout en chargeant l'utilisateur de chaque commentaire
         $comments = $post->comments()->with('user')->paginate(5); // 10 commentaires par page
 
+
         // Vérifier si l'utilisateur suit l'auteur du post
-        $userOfPost = $post->user;
-        $post->is_followed = Auth::user()->followers->contains('followed_id', $userOfPost->id);
+        $userOfPost = $post->user_id;
+        $post->is_followed = Auth::user()->followers->contains('followed_id', $userOfPost);
 
         // Vérifier si le post est liké par l'utilisateur connecté
         $post->is_liked = $post->like->contains('user_id', Auth::id());

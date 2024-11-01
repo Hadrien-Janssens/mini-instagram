@@ -156,31 +156,6 @@
 
                         <x-slot name="content">
 
-                            @if ($comment->user_id !== Auth::id() && Route::currentRouteName() !== 'user.index')
-                                <div>
-                                    @if ($post->is_followed)
-                                        <form action="{{ route('friend.destroy', $comment->user->id) }}"
-                                            method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <x-dropdown-link
-                                                onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                                {{ __('ne plus suivre') }}
-                                            </x-dropdown-link>
-                                        </form>
-                                    @else
-                                        <form action="{{ route('friend.store', $comment->user->id) }}" method="POST">
-                                            @csrf
-                                            <x-dropdown-link :href="route('logout')"
-                                                onclick="event.preventDefault();
-                                            this.closest('form').submit();">
-                                                {{ __('suivre') }}
-                                            </x-dropdown-link>
-                                        </form>
-                                    @endif
-                                </div>
-                            @endif
 
 
 
